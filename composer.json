@@ -1,0 +1,46 @@
+{
+    "name": "ondram/ci-detector-standalone",
+    "description": "Standalone CLI command to detect continuous integration server and provide unified access to properties of current build",
+    "keywords": [
+        "continuous integration",
+        "adapter",
+        "interface",
+        "command",
+        "jenkins",
+        "travis",
+        "circleci",
+        "bamboo",
+        "teamcity",
+        "gitlab",
+        "codeship"
+    ],
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ondřej Machulda",
+            "email": "ondrej.machulda@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "OndraM\\CiDetector\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "OndraM\\CiDetector\\Tests\\": "tests/"
+        }
+    },
+    "require": {
+        "php" : "^5.6 || ^7.0",
+        "ondram/ci-detector": "dev-feature/throw-exception-if-no-ci",
+        "symfony/console": "^3.2",
+        "zendframework/zend-filter": "^2.7"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^5.7",
+        "friendsofphp/php-cs-fixer": "^2.0"
+    },
+    "bin": ["bin/ci-detector"]
+}

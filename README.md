@@ -2,6 +2,7 @@
 
 [![Latest Stable Version](https://img.shields.io/packagist/v/ondram/ci-detector-standalone.svg?style=flat-square)](https://packagist.org/packages/ondram/ci-detector-standalone)
 [![Build Status](https://img.shields.io/travis/OndraM/ci-detector-standalone.svg?style=flat-square)](https://travis-ci.org/OndraM/ci-detector-standalone)
+[![Coverage Status](https://img.shields.io/coveralls/ondram/ci-detector-standalone/master.svg?style=flat-square)](https://coveralls.io/r/ondram/ci-detector-standalone?branch=master)
 [![License](https://img.shields.io/packagist/l/ondram/ci-detector-standalone.svg?style=flat-square)](https://packagist.org/packages/ondram/ci-detector-standalone)
 
 Standalone CLI command providing unified access to various properties of build environment (like build number, git commit, git branch etc.) 

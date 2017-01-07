@@ -40,7 +40,8 @@
     },
     "require-dev": {
         "phpunit/phpunit": "^5.7",
-        "friendsofphp/php-cs-fixer": "^2.0"
+        "friendsofphp/php-cs-fixer": "^2.0",
+        "satooshi/php-coveralls": "^1.0"
     },
     "bin": ["bin/ci-detector"]
 }

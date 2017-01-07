@@ -14,9 +14,6 @@ install:
   - travis_retry composer self-update && composer --version
   - travis_retry composer update --no-interaction $dependencies
 
-before_script:
-#  - unset TRAVIS # To not interfere with tests
-
 script:
   - vendor/bin/php-cs-fixer fix --diff --dry-run
   - vendor/bin/phpunit --coverage-clover coverage-clover.xml

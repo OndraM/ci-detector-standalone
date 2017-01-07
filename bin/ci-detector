@@ -28,7 +28,7 @@ if (!requireIfExists(__DIR__ . '/../vendor/autoload.php') // when used directly
 
 date_default_timezone_set('Europe/Prague');
 
-$application = new Application('CI detector', '1.0.0');
+$application = new Application('CI Detector', '1.0.0');
 
 $application->add(new DetectCommand(new CiDetector()));
 $application->run();

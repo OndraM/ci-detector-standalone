@@ -24,33 +24,49 @@ server. However, these variables are named differently in each CI. This command 
 [ci-detector](https://github.com/OndraM/ci-detector) PHP library, which provides adapter for each supported
 CI server.
 
+## Usage
+
+```sh
+$ ./ci-detector.phar # return status code 0 if CI detected, 1 otherwise
+$ echo $? # to print status code of previous command
+0
+
+$ ./ci-detector.phar detect ci-name
+Travis CI
+
+$ ./ci-detector.phar detect build-number
+11.3
+
+$ ./ci-detector.phar detect build-url
+https://travis-ci.org/OndraM/ci-detector-standalone/jobs/189809581
+
+$ ./ci-detector.phar detect git-branch
+feature/test
+
+$ ./ci-detector.phar detect git-commit
+f45e5809cefdbb819913f9357381f4d291fd49a9
+
+$ ./ci-detector.phar detect repository-url # Not supported on Travis CI, will print empty string
+
+
+```
+
 ## Installation
 
-Install using [Composer](http://getcomposer.org/):
+### Install as a standalone PHAR file
+CI Detector could be installed as a standalone executable PHAR file (`ci-detector.phar`).
+Download latest version from [Releases page](https://github.com/OndraM/ci-detector-standalone/releases/latest).
+
+To run CI Detector use command  `./ci-detector.phar` in the directory where you saved the file (or `php ci-detector.phar` if the
+file itself is not executable).
+
+### Install using [Composer](http://getcomposer.org/)
 
 ```sh
 $ composer require ondram/ci-detector-standalone
 ```
 
-If you need the detection inside PHP script, you can use the [ci-detector](https://github.com/OndraM/ci-detector) library directly. 
+To run CI Detector use command `vendor/bin/ci-detector`.
 
-## Usage
-
-```sh
-$ vendor/bin/ci-detector # return status code 0 if CI detected, 1 otherwise 
-$ echo $? # to print status code of previous command
-0
-
-$ vendor/bin/ci-detector detect ci-name
-Travis CI
-$ vendor/bin/ci-detector detect build-number
-11.3
-$ vendor/bin/ci-detector detect build-url
-https://travis-ci.org/OndraM/ci-detector-standalone/jobs/189809581
-$ vendor/bin/ci-detector detect git-branch
-feature/test
-$ vendor/bin/ci-detector detect git-commit
-f45e5809cefdbb819913f9357381f4d291fd49a9
-$ vendor/bin/ci-detector detect repository-url # Not supported on Travis CI, will print empty string
-
-```
+If you need the detection inside PHP script (and you don't need the CLI command), you can just use directly the lightweight
+[ci-detector](https://github.com/OndraM/ci-detector) library.

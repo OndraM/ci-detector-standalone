@@ -17,6 +17,11 @@ script:
   - vendor/bin/phpunit --coverage-clover coverage-clover.xml
 
 after_script:
+  - bin/ci-detector detect ci-name
+  - bin/ci-detector detect build-number
+  - bin/ci-detector detect build-url
+  - bin/ci-detector detect git-branch
+  - bin/ci-detector detect git-commit
   - env
 
 after_success:

@@ -60,7 +60,7 @@ Download latest version from [Releases page](https://github.com/OndraM/ci-detect
 To run CI Detector use command  `./ci-detector.phar` in the directory where you saved the file (or `php ci-detector.phar` if the
 file itself is not executable).
 
-### Install using [Composer](http://getcomposer.org/)
+### Install using [Composer](https://getcomposer.org/)
 
 ```sh
 $ composer require ondram/ci-detector-standalone

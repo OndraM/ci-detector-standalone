@@ -50,8 +50,24 @@ $ ./ci-detector.phar detect git-commit
 f45e5809cefdbb819913f9357381f4d291fd49a9
 
 $ ./ci-detector.phar detect repository-url # Not supported on Travis CI, will print empty string
+```
 
+## Dump all available properties
 
+`dump` command will show all properties detected in current environment by ci-detector:
+
+```sh
+$ ./ci-detector.phar dump
++----------------+---------------------------------------------------------------+
+| Property name  | Current value                                                 |
++----------------+---------------------------------------------------------------+
+| ci-name        | Travis CI                                                     |
+| build-number   | 164.1                                                         |
+| build-url      | https://travis-ci.org/OndraM/ci-detector-standalone/jobs/1337 |
+| git-commit     | 9b232f6813915ddb1f226de93366cb924c72e400                      |
+| git-branch     | feature/dump-command                                          |
+| repository-url |                                                               |
++----------------+---------------------------------------------------------------+
 ```
 
 ## Installation

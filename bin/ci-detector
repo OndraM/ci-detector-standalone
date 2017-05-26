@@ -5,6 +5,7 @@ namespace OndraM\Ci;
 
 use OndraM\CiDetector\Command\DetectCommand;
 use OndraM\CiDetector\CiDetector;
+use OndraM\CiDetector\Command\DumpCommand;
 use Symfony\Component\Console\Application;
 
 function requireIfExists($file)
@@ -31,4 +32,5 @@ date_default_timezone_set('Europe/Prague');
 $application = new Application('CI Detector', '1.0.0');
 
 $application->add(new DetectCommand(new CiDetector()));
+$application->add(new DumpCommand(new CiDetector()));
 $application->run();

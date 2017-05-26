@@ -19,6 +19,7 @@ script:
   - vendor/bin/phpunit --coverage-clover coverage-clover.xml
 
 after_script:
+  - bin/ci-detector dump
   - env
 
 after_success:

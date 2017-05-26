@@ -13,7 +13,7 @@ use Symfony\Component\Console\Exception\InvalidArgumentException;
 use Symfony\Component\Console\Tester\CommandTester;
 
 /**
- * @covers OndraM\CiDetector\Command\DetectCommand
+ * @covers \OndraM\CiDetector\Command\DetectCommand
  */
 class DetectCommandTest extends \PHPUnit_Framework_TestCase
 {

@@ -3,19 +3,18 @@
 namespace OndraM\CiDetector\Command;
 
 use OndraM\CiDetector\CiDetector;
+use OndraM\CiDetector\CiMeta;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Exception\InvalidArgumentException;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Zend\Filter\FilterInterface;
-use Zend\Filter\Word\DashToCamelCase;
 
 class DetectCommand extends Command
 {
     const ARGUMENT_PROPERTY = 'property';
-    /** @var FilterInterface */
-    private $propertyNameFilter;
+    /** @var CiMeta */
+    private $ciMeta;
     /** @var CiDetector */
     private $ciDetector;
 
@@ -25,7 +24,7 @@ class DetectCommand extends Command
      */
     public function __construct(CiDetector $ciDetector, $name = null)
     {
-        $this->propertyNameFilter = new DashToCamelCase();
+        $this->ciMeta = new CiMeta();
         $this->ciDetector = $ciDetector;
 
         parent::__construct($name);
@@ -33,12 +32,15 @@ class DetectCommand extends Command
 
     protected function configure()
     {
+        $availableProperties = $this->ciMeta->getAvailableProperties();
+
         $this->setName('detect')
             ->setDescription('Detect properties of CI run environment')
             ->addArgument(
                 self::ARGUMENT_PROPERTY,
                 InputArgument::OPTIONAL,
-                'Name of the property to detect.'
+                'Name of the property to detect. '
+                    . '(<comment>' . implode('</comment>, <comment>', $availableProperties) . '</comment>)'
             );
     }
 
@@ -65,7 +67,7 @@ class DetectCommand extends Command
      */
     private function detectProperty($propertyName)
     {
-        $getterMethod = $this->assembleMethodName($propertyName);
+        $getterMethod = $this->ciMeta->assembleMethodNameFromProperty($propertyName);
         $ci = $this->ciDetector->detect();
         $callable = [$ci, $getterMethod];
 
@@ -76,16 +78,5 @@ class DetectCommand extends Command
         }
 
         return call_user_func($callable);
-    }
-
-    /**
-     * @param string $propertyName
-     * @return string
-     */
-    private function assembleMethodName($propertyName)
-    {
-        $methodName = $this->propertyNameFilter->filter($propertyName);
-
-        return 'get' . $methodName;
     }
 }

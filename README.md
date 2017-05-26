@@ -24,6 +24,9 @@ server. However, these variables are named differently in each CI. This command 
 [ci-detector](https://github.com/OndraM/ci-detector) PHP library, which provides adapter for each supported
 CI server.
 
+Releases are matched to the versions of the parent [ci-detector](https://github.com/OndraM/ci-detector) library.
+See [changelog](https://github.com/OndraM/ci-detector/blob/master/CHANGELOG.md) there for the list of latest changes.
+
 ## Usage
 
 ```sh

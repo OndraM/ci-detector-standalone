@@ -1,7 +1,8 @@
-<?php
+<?php declare(strict_types=1);
 
-namespace OndraM\CiDetector;
+namespace OndraM\CiDetector\Tests;
 
+use OndraM\CiDetector\CiMeta;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -11,10 +12,8 @@ class CiMetaTest extends TestCase
 {
     /**
      * @dataProvider providePropertyNames
-     * @param string $property
-     * @param string $expectedMethodName
      */
-    public function testShouldAssembleMethodNameFromProperty($property, $expectedMethodName)
+    public function testShouldAssembleMethodNameFromProperty(string $property, string $expectedMethodName): void
     {
         $meta = new CiMeta();
 
@@ -24,7 +23,7 @@ class CiMetaTest extends TestCase
     /**
      * @return array[]
      */
-    public function providePropertyNames()
+    public function providePropertyNames(): array
     {
         return [
             ['foo', 'getFoo'],
@@ -32,7 +31,7 @@ class CiMetaTest extends TestCase
         ];
     }
 
-    public function testShouldGetPropertyNamesFromTheCiInterface()
+    public function testShouldGetPropertyNamesFromTheCiInterface(): void
     {
         $meta = new CiMeta();
 

@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace OndraM\CiDetector\Tests\Command;
 
@@ -18,7 +18,7 @@ use Symfony\Component\Console\Tester\CommandTester;
  */
 class DetectCommandTest extends TestCase
 {
-    public function testShouldReturnNonZeroStatusCodeIfCiNotDetected()
+    public function testShouldReturnNonZeroStatusCodeIfCiNotDetected(): void
     {
         $ciDetectorMock = $this->createCiDetectorForNonCiEnvironment();
         $command = $this->createCommandWithCiDetectorMock($ciDetectorMock);
@@ -30,7 +30,7 @@ class DetectCommandTest extends TestCase
         $this->assertSame('', $tester->getDisplay());
     }
 
-    public function testShouldReturnZeroStatusCodeIfCiIsDetected()
+    public function testShouldReturnZeroStatusCodeIfCiIsDetected(): void
     {
         $ciDetectorMock = $this->createCiDetectorForCiEnvironment($this->createMock(CiInterface::class));
         $command = $this->createCommandWithCiDetectorMock($ciDetectorMock);
@@ -42,7 +42,7 @@ class DetectCommandTest extends TestCase
         $this->assertSame('', $tester->getDisplay());
     }
 
-    public function testShouldOutputPropertyValue()
+    public function testShouldOutputPropertyValue(): void
     {
         $ciMock = $this->createConfiguredMock(
             Travis::class,
@@ -66,7 +66,7 @@ class DetectCommandTest extends TestCase
         $this->assertSame("origin/feature/foo\n", $tester->getDisplay(true));
     }
 
-    public function testShouldThrowExceptionIfCiPropertyIsNotSupported()
+    public function testShouldThrowExceptionIfCiPropertyIsNotSupported(): void
     {
         $ciDetectorMock = $this->createCiDetectorForCiEnvironment($this->createMock(CiInterface::class));
         $command = $this->createCommandWithCiDetectorMock($ciDetectorMock);
@@ -83,11 +83,7 @@ class DetectCommandTest extends TestCase
         );
     }
 
-    /**
-     * @param CiDetector $ciDetector
-     * @return Command
-     */
-    private function createCommandWithCiDetectorMock(CiDetector $ciDetector)
+    private function createCommandWithCiDetectorMock(CiDetector $ciDetector): Command
     {
         $application = new Application();
         $application->add(new DetectCommand($ciDetector));
@@ -96,7 +92,6 @@ class DetectCommandTest extends TestCase
     }
 
     /**
-     * @param CiInterface $ci
      * @return CiDetector::class|\PHPUnit_Framework_MockObject_MockObject
      */
     private function createCiDetectorForCiEnvironment(CiInterface $ci)

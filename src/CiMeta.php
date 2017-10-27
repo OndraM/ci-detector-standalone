@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace OndraM\CiDetector;
 
@@ -23,18 +23,14 @@ class CiMeta
         $this->methodNameFilter = new CamelCaseToDash();
     }
 
-    /**
-     * @param string $propertyName
-     * @return string
-     */
-    public function assembleMethodNameFromProperty($propertyName)
+    public function assembleMethodNameFromProperty(string $propertyName): string
     {
         $methodName = $this->propertyNameFilter->filter($propertyName);
 
         return 'get' . $methodName;
     }
 
-    public function getAvailableProperties()
+    public function getAvailableProperties(): array
     {
         $properties = [];
 
@@ -49,11 +45,7 @@ class CiMeta
         return $properties;
     }
 
-    /**
-     * @param string $methodName
-     * @return string
-     */
-    private function derivePropertyNameFromMethod($methodName)
+    private function derivePropertyNameFromMethod(string $methodName): string
     {
         $methodName = mb_substr($methodName, 3);
 

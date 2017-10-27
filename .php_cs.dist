@@ -11,8 +11,8 @@ return PhpCsFixer\Config::create()
         'blank_line_before_return' => true,
         'cast_spaces' => true,
         'concat_space' => ['spacing' => 'one'],
+        'declare_strict_types' => true,
         'function_typehint_space' => true,
-        'linebreak_after_opening_tag' => true,
         'lowercase_cast' => true,
         'mb_str_functions' => true,
         'method_separation' => true,
@@ -60,17 +60,20 @@ return PhpCsFixer\Config::create()
         'phpdoc_trim' => true,
         'phpdoc_types' => true,
         'psr4' => true,
+        'return_type_declaration' => true,
         'self_accessor' => true,
         'short_scalar_cast' => true,
         'single_blank_line_before_namespace' => true,
         'single_quote' => true,
         'space_after_semicolon' => true,
         'standardize_not_equals' => true,
+        'ternary_to_null_coalescing' => true,
         'ternary_operator_spaces' => true,
         'trailing_comma_in_multiline_array' => true,
         'trim_array_spaces' => true,
         'unary_operator_spaces' => true,
+        'void_return' => true,
         'whitespace_after_comma_in_array' => true,
     ])
-    ->setRiskyAllowed(true)
-    ->setFinder($finder);
+    ->setFinder($finder)
+    ->setRiskyAllowed(true);

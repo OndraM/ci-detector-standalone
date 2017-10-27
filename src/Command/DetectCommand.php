@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace OndraM\CiDetector\Command;
 
@@ -18,11 +18,7 @@ class DetectCommand extends Command
     /** @var CiDetector */
     private $ciDetector;
 
-    /**
-     * @param CiDetector $ciDetector
-     * @param string $name
-     */
-    public function __construct(CiDetector $ciDetector, $name = null)
+    public function __construct(CiDetector $ciDetector, string $name = null)
     {
         $this->ciMeta = new CiMeta();
         $this->ciDetector = $ciDetector;
@@ -30,7 +26,7 @@ class DetectCommand extends Command
         parent::__construct($name);
     }
 
-    protected function configure()
+    protected function configure(): void
     {
         $availableProperties = $this->ciMeta->getAvailableProperties();
 
@@ -61,11 +57,7 @@ class DetectCommand extends Command
         return 0;
     }
 
-    /**
-     * @param string $propertyName
-     * @return string
-     */
-    private function detectProperty($propertyName)
+    private function detectProperty(string $propertyName): string
     {
         $getterMethod = $this->ciMeta->assembleMethodNameFromProperty($propertyName);
         $ci = $this->ciDetector->detect();

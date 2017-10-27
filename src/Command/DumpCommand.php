@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace OndraM\CiDetector\Command;
 
@@ -21,11 +21,7 @@ class DumpCommand extends Command
     /** @var CiDetector */
     private $ciDetector;
 
-    /**
-     * @param CiDetector $ciDetector
-     * @param string $name
-     */
-    public function __construct(CiDetector $ciDetector, $name = null)
+    public function __construct(CiDetector $ciDetector, string $name = null)
     {
         $this->propertyNameFilter = new DashToCamelCase();
         $this->ciMeta = new CiMeta();
@@ -34,7 +30,7 @@ class DumpCommand extends Command
         parent::__construct($name);
     }
 
-    protected function configure()
+    protected function configure(): void
     {
         $this->setName('dump')
             ->setDescription('Dump CI values from current environment');

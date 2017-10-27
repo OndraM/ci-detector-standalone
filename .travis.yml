@@ -8,13 +8,21 @@ matrix:
   include:
     - php: 7.1
       env: dependencies="--prefer-lowest"
+    - php: 7.1
+      env: CHECK_CODESTYLE=1
+      before_install:
+        - phpenv config-rm xdebug.ini
+      script:
+        - vendor/bin/php-cs-fixer fix --diff --dry-run -vvv
+        - vendor/bin/phpstan.phar analyze ./src --level 7
+      after_script: ~
+      after_success: ~
 
 install:
   - travis_retry composer self-update && composer --version
   - travis_retry composer update --no-interaction $dependencies
 
 script:
-  - vendor/bin/php-cs-fixer fix --diff --dry-run
   - vendor/bin/phpunit --coverage-clover coverage-clover.xml
 
 after_script:

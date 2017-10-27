@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace OndraM\CiDetector\Tests\Command;
 
@@ -18,7 +18,7 @@ use Symfony\Component\Console\Tester\CommandTester;
  */
 class DumpCommandTest extends TestCase
 {
-    public function testShouldThrowExceptionIfCiNotDetected()
+    public function testShouldThrowExceptionIfCiNotDetected(): void
     {
         $ciDetectorMock = $this->createCiDetectorForNonCiEnvironment();
         $command = $this->createCommandWithCiDetectorMock($ciDetectorMock);
@@ -29,7 +29,7 @@ class DumpCommandTest extends TestCase
         $tester->execute(['command' => $command->getName()]);
     }
 
-    public function testShouldDumpDetectedCiValue()
+    public function testShouldDumpDetectedCiValue(): void
     {
         $ciMock = $this->createConfiguredMock(
             Travis::class,
@@ -71,11 +71,7 @@ HTXT;
         $this->assertSame($expectedOutput, $tester->getDisplay(true));
     }
 
-    /**
-     * @param CiDetector $ciDetector
-     * @return Command
-     */
-    private function createCommandWithCiDetectorMock(CiDetector $ciDetector)
+    private function createCommandWithCiDetectorMock(CiDetector $ciDetector): Command
     {
         $application = new Application();
         $application->add(new DumpCommand($ciDetector));
@@ -84,7 +80,6 @@ HTXT;
     }
 
     /**
-     * @param CiInterface $ci
      * @return CiDetector::class|\PHPUnit_Framework_MockObject_MockObject
      */
     private function createCiDetectorForCiEnvironment(CiInterface $ci)

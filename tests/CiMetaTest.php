@@ -2,10 +2,12 @@
 
 namespace OndraM\CiDetector;
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * @covers \OndraM\CiDetector\CiMeta
  */
-class CiMetaTest extends \PHPUnit_Framework_TestCase
+class CiMetaTest extends TestCase
 {
     /**
      * @dataProvider providePropertyNames

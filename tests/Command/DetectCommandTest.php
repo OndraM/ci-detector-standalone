@@ -7,6 +7,7 @@ use OndraM\CiDetector\Ci\Travis;
 use OndraM\CiDetector\CiDetector;
 use OndraM\CiDetector\Command\DetectCommand;
 use OndraM\CiDetector\Exception\CiNotDetectedException;
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Exception\InvalidArgumentException;
@@ -15,7 +16,7 @@ use Symfony\Component\Console\Tester\CommandTester;
 /**
  * @covers \OndraM\CiDetector\Command\DetectCommand
  */
-class DetectCommandTest extends \PHPUnit_Framework_TestCase
+class DetectCommandTest extends TestCase
 {
     public function testShouldReturnNonZeroStatusCodeIfCiNotDetected()
     {

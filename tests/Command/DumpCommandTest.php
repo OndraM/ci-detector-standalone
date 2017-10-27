@@ -7,6 +7,7 @@ use OndraM\CiDetector\Ci\Travis;
 use OndraM\CiDetector\CiDetector;
 use OndraM\CiDetector\Command\DumpCommand;
 use OndraM\CiDetector\Exception\CiNotDetectedException;
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Exception\RuntimeException;
@@ -15,7 +16,7 @@ use Symfony\Component\Console\Tester\CommandTester;
 /**
  * @covers \OndraM\CiDetector\Command\DumpCommand
  */
-class DumpCommandTest extends \PHPUnit_Framework_TestCase
+class DumpCommandTest extends TestCase
 {
     public function testShouldThrowExceptionIfCiNotDetected()
     {

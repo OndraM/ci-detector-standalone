@@ -37,6 +37,7 @@
     },
     "require": {
         "php" : "^7.1",
+        "ext-mbstring" : "*",
         "ondram/ci-detector": "^3.0",
         "symfony/console": "^4.0",
         "zendframework/zend-filter": "^2.7"

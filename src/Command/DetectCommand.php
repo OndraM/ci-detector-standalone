@@ -46,6 +46,7 @@ class DetectCommand extends Command
             return 1;
         }
 
+        /** @var string $propertyToGet */
         $propertyToGet = $input->getArgument(self::ARGUMENT_PROPERTY);
 
         if (empty($propertyToGet)) {

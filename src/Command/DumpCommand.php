@@ -52,7 +52,7 @@ class DumpCommand extends Command
         foreach ($availableProperties as $property) {
             $methodName = $this->ciMeta->assembleMethodNameFromProperty($property);
 
-            $table->addRow([$property, call_user_func([$ci, $methodName])]);
+            $table->addRow([$property, $ci->$methodName()]);
         }
 
         $table->render();

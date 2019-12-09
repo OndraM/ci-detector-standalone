@@ -30,6 +30,9 @@ class CiMeta
         return 'get' . $methodName;
     }
 
+    /**
+     * @return string[]
+     */
     public function getAvailableProperties(): array
     {
         $properties = [];

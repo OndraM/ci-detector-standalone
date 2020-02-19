@@ -18,7 +18,10 @@ use Symfony\Component\Console\Tester\CommandTester;
  */
 class DetectCommandTest extends TestCase
 {
-    public function testShouldReturnNonZeroStatusCodeIfCiNotDetected(): void
+    /**
+     * @test
+     */
+    public function shouldReturnNonZeroStatusCodeIfCiNotDetected(): void
     {
         $ciDetectorMock = $this->createCiDetectorForNonCiEnvironment();
         $command = $this->createCommandWithCiDetectorMock($ciDetectorMock);
@@ -30,7 +33,10 @@ class DetectCommandTest extends TestCase
         $this->assertSame('', $tester->getDisplay());
     }
 
-    public function testShouldReturnZeroStatusCodeIfCiIsDetected(): void
+    /**
+     * @test
+     */
+    public function shouldReturnZeroStatusCodeIfCiIsDetected(): void
     {
         $ciDetectorMock = $this->createCiDetectorForCiEnvironment($this->createMock(CiInterface::class));
         $command = $this->createCommandWithCiDetectorMock($ciDetectorMock);
@@ -42,7 +48,10 @@ class DetectCommandTest extends TestCase
         $this->assertSame('', $tester->getDisplay());
     }
 
-    public function testShouldOutputPropertyValue(): void
+    /**
+     * @test
+     */
+    public function shouldOutputPropertyValue(): void
     {
         $ciMock = $this->createConfiguredMock(
             Travis::class,
@@ -66,7 +75,10 @@ class DetectCommandTest extends TestCase
         $this->assertSame("origin/feature/foo\n", $tester->getDisplay(true));
     }
 
-    public function testShouldThrowExceptionIfCiPropertyIsNotSupported(): void
+    /**
+     * @test
+     */
+    public function shouldThrowExceptionIfCiPropertyIsNotSupported(): void
     {
         $ciDetectorMock = $this->createCiDetectorForCiEnvironment($this->createMock(CiInterface::class));
         $command = $this->createCommandWithCiDetectorMock($ciDetectorMock);

@@ -3,28 +3,14 @@
 [![Latest Stable Version](https://img.shields.io/packagist/v/ondram/ci-detector-standalone.svg?style=flat-square)](https://packagist.org/packages/ondram/ci-detector-standalone)
 [![Build Status](https://img.shields.io/travis/OndraM/ci-detector-standalone.svg?style=flat-square)](https://travis-ci.org/OndraM/ci-detector-standalone)
 [![Coverage Status](https://img.shields.io/coveralls/OndraM/ci-detector-standalone/master.svg?style=flat-square)](https://coveralls.io/github/OndraM/ci-detector-standalone?branch=master)
-[![License](https://img.shields.io/packagist/l/ondram/ci-detector-standalone.svg?style=flat-square)](https://packagist.org/packages/ondram/ci-detector-standalone)
 
-Standalone CLI command providing unified access to various properties of build environment (like build number, git commit, git branch etc.) 
-for many popular CI servers:
+Standalone CLI command providing unified access to various properties of CI build environment (like build number, git commit, git branch etc.).
 
- - [Jenkins](https://jenkins.io/)
- - [Travis CI](https://travis-ci.org/)
- - [AppVeyor](https://www.appveyor.com/)
- - [Bamboo](https://www.atlassian.com/software/bamboo)
- - [CircleCI](https://circleci.com/)
- - [Codeship](https://codeship.com/)
- - [continuousphp](https://continuousphp.com/)
- - [drone](https://github.com/drone/drone/)
- - [GitLab](https://about.gitlab.com/gitlab-ci/)
- - [TeamCity](https://www.jetbrains.com/teamcity/)
- 
-If you depend on some of these properties, use the command to make your scripts (and especially CLI tools) portable for 
-multiple build environments.
+You can use the command to make your scripts (and especially CLI tools) portable for  multiple build environments.
 
 The detection is based on environment variables injected to the build environment by continuous integration 
-server. However, these variables are named differently in each CI. This command is based on lightweight 
-[ci-detector](https://github.com/OndraM/ci-detector) PHP library, which provides adapter for each supported
+server. However, these variables are named differently in each CI. **This command is based on lightweight
+[ci-detector](https://github.com/OndraM/ci-detector) PHP library**, which provides adapter for each supported
 CI server.
 
 Releases are matched to the versions of the parent [ci-detector](https://github.com/OndraM/ci-detector) library.
@@ -90,5 +76,5 @@ $ composer require ondram/ci-detector-standalone
 
 To run CI Detector use command `vendor/bin/ci-detector`.
 
-If you need the detection inside PHP script (and you don't need the CLI command), you can just use directly the lightweight
-[ci-detector](https://github.com/OndraM/ci-detector) library.
+If you need the detection inside PHP script (and you don't need the CLI command), you can just use directly
+the lightweight [ci-detector](https://github.com/OndraM/ci-detector) library.

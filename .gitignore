@@ -1,5 +1,4 @@
 composer.lock
 vendor
-.php_cs.cache
 .phpunit.result.cache
 ci-detector.phar

@@ -18,7 +18,10 @@ use Symfony\Component\Console\Tester\CommandTester;
  */
 class DumpCommandTest extends TestCase
 {
-    public function testShouldThrowExceptionIfCiNotDetected(): void
+    /**
+     * @test
+     */
+    public function shouldThrowExceptionIfCiNotDetected(): void
     {
         $ciDetectorMock = $this->createCiDetectorForNonCiEnvironment();
         $command = $this->createCommandWithCiDetectorMock($ciDetectorMock);
@@ -29,7 +32,10 @@ class DumpCommandTest extends TestCase
         $tester->execute(['command' => $command->getName()]);
     }
 
-    public function testShouldDumpDetectedCiValue(): void
+    /**
+     * @test
+     */
+    public function shouldDumpDetectedCiValue(): void
     {
         $ciMock = $this->createConfiguredMock(
             Travis::class,

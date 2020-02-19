@@ -12,7 +12,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class DetectCommand extends Command
 {
-    const ARGUMENT_PROPERTY = 'property';
+    public const ARGUMENT_PROPERTY = 'property';
     /** @var CiMeta */
     private $ciMeta;
     /** @var CiDetector */

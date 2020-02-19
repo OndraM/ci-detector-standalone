@@ -9,23 +9,23 @@ php:
 matrix:
   include:
     - php: 7.1
-      env: dependencies="--prefer-lowest"
-    - php: 7.4
-      env: CHECK_CODESTYLE=1
+      env: DEPENDENCIES="--prefer-lowest"
+    - name: "Code style and static analysis"
+      php: 7.4
       before_install:
         - phpenv config-rm xdebug.ini
       script:
-        - vendor/bin/php-cs-fixer fix --diff --dry-run -vvv
-        - vendor/bin/phpstan.phar analyze ./src --level 7
+        - ./vendor/bin/ecs check ./src/ ./tests/ --ansi
+        - ./vendor/bin/phpstan analyze ./src --level 7
       after_script: ~
       after_success: ~
 
 install:
   - travis_retry composer self-update && composer --version
-  - travis_retry composer update --no-interaction $dependencies
+  - travis_retry composer update --no-interaction $DEPENDENCIES
 
 script:
-  - vendor/bin/phpunit --coverage-clover coverage-clover.xml
+  - vendor/bin/phpunit --coverage-clover build/logs/clover.xml
 
 after_script:
   - bin/ci-detector dump

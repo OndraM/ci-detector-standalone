@@ -12,8 +12,10 @@ class CiMetaTest extends TestCase
 {
     /**
      * @dataProvider providePropertyNames
+     *
+     * @test
      */
-    public function testShouldAssembleMethodNameFromProperty(string $property, string $expectedMethodName): void
+    public function shouldAssembleMethodNameFromProperty(string $property, string $expectedMethodName): void
     {
         $meta = new CiMeta();
 
@@ -31,7 +33,10 @@ class CiMetaTest extends TestCase
         ];
     }
 
-    public function testShouldGetPropertyNamesFromTheCiInterface(): void
+    /**
+     * @test
+     */
+    public function shouldGetPropertyNamesFromTheCiInterface(): void
     {
         $meta = new CiMeta();
 

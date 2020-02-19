@@ -28,7 +28,7 @@ class CiMetaTest extends TestCase
     public function providePropertyNames(): array
     {
         return [
-            ['foo', 'getFoo'],
+            ['pull-request', 'isPullRequest'],
             ['ci-name', 'getCiName'],
         ];
     }
@@ -40,14 +40,16 @@ class CiMetaTest extends TestCase
     {
         $meta = new CiMeta();
 
-        $this->assertEquals(
+        $this->assertEqualsCanonicalizing(
             [
                 'ci-name',
                 'build-number',
                 'build-url',
                 'git-commit',
                 'git-branch',
+                'repository-name',
                 'repository-url',
+                'pull-request',
             ],
             $meta->getAvailableProperties()
         );

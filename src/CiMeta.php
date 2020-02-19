@@ -27,7 +27,11 @@ class CiMeta
     {
         $methodName = $this->propertyNameFilter->filter($propertyName);
 
-        return 'get' . $methodName;
+        if (method_exists(CiInterface::class, 'get' . $methodName)) {
+            return 'get' . $methodName;
+        }
+
+        return 'is' . $methodName;
     }
 
     /**
@@ -38,7 +42,9 @@ class CiMeta
         $properties = [];
 
         foreach (get_class_methods(CiInterface::class) as $methodName) {
-            if (mb_substr($methodName, 0, 3) !== 'get') {
+            if (mb_substr($methodName, 0, 3) !== 'get'
+                && (mb_substr($methodName, 0, 2) !== 'is'
+                    || $methodName === 'isDetected')) {
                 continue;
             }
 
@@ -50,7 +56,7 @@ class CiMeta
 
     private function derivePropertyNameFromMethod(string $methodName): string
     {
-        $methodName = mb_substr($methodName, 3);
+        $methodName = (mb_substr($methodName, 0, 3) === 'get') ? mb_substr($methodName, 3) : mb_substr($methodName, 2);
 
         return mb_strtolower($this->methodNameFilter->filter($methodName));
     }

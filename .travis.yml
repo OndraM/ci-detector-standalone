@@ -15,8 +15,8 @@ matrix:
       before_install:
         - phpenv config-rm xdebug.ini
       script:
-        - ./vendor/bin/ecs check ./src/ ./tests/ --ansi
-        - ./vendor/bin/phpstan analyze ./src --level 7
+        - composer lint
+        - composer analyze
       after_script: ~
       after_success: ~
 

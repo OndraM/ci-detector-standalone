@@ -2,10 +2,10 @@
 
 namespace OndraM\CiDetector;
 
+use Laminas\Filter\FilterInterface;
+use Laminas\Filter\Word\CamelCaseToDash;
+use Laminas\Filter\Word\DashToCamelCase;
 use OndraM\CiDetector\Ci\CiInterface;
-use Zend\Filter\FilterInterface;
-use Zend\Filter\Word\CamelCaseToDash;
-use Zend\Filter\Word\DashToCamelCase;
 
 /**
  * Provide metadata of CiInterface

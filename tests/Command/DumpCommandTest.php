@@ -7,6 +7,7 @@ use OndraM\CiDetector\Ci\Travis;
 use OndraM\CiDetector\CiDetector;
 use OndraM\CiDetector\Command\DumpCommand;
 use OndraM\CiDetector\Exception\CiNotDetectedException;
+use OndraM\CiDetector\TrinaryLogic;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Command\Command;
@@ -46,6 +47,8 @@ class DumpCommandTest extends TestCase
                 'getGitCommit' => '0f00c556508e02b9376a39ce21f25cd79e9183f4',
                 'getGitBranch' => 'origin/feature/foo',
                 'getRepositoryUrl' => 'ssh://git@gitserver:7999/project/repo.git',
+                'getRepositoryName' => '',
+                'isPullRequest' => TrinaryLogic::createFromBoolean(false),
             ]
         );
 
@@ -60,16 +63,18 @@ class DumpCommandTest extends TestCase
         );
 
         $expectedOutput = <<<HTXT
-+----------------+-------------------------------------------+
-| Property name  | Current value                             |
-+----------------+-------------------------------------------+
-| ci-name        | Jenkins                                   |
-| build-number   | 1337                                      |
-| build-url      |                                           |
-| git-commit     | 0f00c556508e02b9376a39ce21f25cd79e9183f4  |
-| git-branch     | origin/feature/foo                        |
-| repository-url | ssh://git@gitserver:7999/project/repo.git |
-+----------------+-------------------------------------------+
++-----------------+-------------------------------------------+
+| Property name   | Current value                             |
++-----------------+-------------------------------------------+
+| ci-name         | Jenkins                                   |
+| pull-request    | No                                        |
+| build-number    | 1337                                      |
+| build-url       |                                           |
+| git-commit      | 0f00c556508e02b9376a39ce21f25cd79e9183f4  |
+| git-branch      | origin/feature/foo                        |
+| repository-name |                                           |
+| repository-url  | ssh://git@gitserver:7999/project/repo.git |
++-----------------+-------------------------------------------+
 
 HTXT;
 

@@ -4,6 +4,7 @@ namespace OndraM\CiDetector\Command;
 
 use OndraM\CiDetector\CiDetector;
 use OndraM\CiDetector\CiMeta;
+use OndraM\CiDetector\TrinaryLogic;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Exception\RuntimeException;
 use Symfony\Component\Console\Helper\Table;
@@ -51,8 +52,13 @@ class DumpCommand extends Command
 
         foreach ($availableProperties as $property) {
             $methodName = $this->ciMeta->assembleMethodNameFromProperty($property);
+            $value = $ci->$methodName();
 
-            $table->addRow([$property, $ci->$methodName()]);
+            if ($value instanceof TrinaryLogic) {
+                $value = $value->describe();
+            }
+
+            $table->addRow([$property, $value]);
         }
 
         $table->render();

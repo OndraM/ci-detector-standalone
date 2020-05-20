@@ -2,6 +2,8 @@
 
 namespace OndraM\CiDetector\Command;
 
+use Laminas\Filter\FilterInterface;
+use Laminas\Filter\Word\DashToCamelCase;
 use OndraM\CiDetector\CiDetector;
 use OndraM\CiDetector\CiMeta;
 use OndraM\CiDetector\TrinaryLogic;
@@ -10,8 +12,6 @@ use Symfony\Component\Console\Exception\RuntimeException;
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Zend\Filter\FilterInterface;
-use Zend\Filter\Word\DashToCamelCase;
 
 class DumpCommand extends Command
 {

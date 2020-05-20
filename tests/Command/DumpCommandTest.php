@@ -8,6 +8,7 @@ use OndraM\CiDetector\CiDetector;
 use OndraM\CiDetector\Command\DumpCommand;
 use OndraM\CiDetector\Exception\CiNotDetectedException;
 use OndraM\CiDetector\TrinaryLogic;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Command\Command;
@@ -91,7 +92,7 @@ HTXT;
     }
 
     /**
-     * @return CiDetector::class|\PHPUnit_Framework_MockObject_MockObject
+     * @return CiDetector|MockObject
      */
     private function createCiDetectorForCiEnvironment(CiInterface $ci)
     {
@@ -105,7 +106,7 @@ HTXT;
     }
 
     /**
-     * @return CiDetector::class|\PHPUnit_Framework_MockObject_MockObject
+     * @return CiDetector|MockObject
      */
     private function createCiDetectorForNonCiEnvironment()
     {

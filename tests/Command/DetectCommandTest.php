@@ -7,6 +7,7 @@ use OndraM\CiDetector\Ci\Travis;
 use OndraM\CiDetector\CiDetector;
 use OndraM\CiDetector\Command\DetectCommand;
 use OndraM\CiDetector\Exception\CiNotDetectedException;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Command\Command;
@@ -104,7 +105,7 @@ class DetectCommandTest extends TestCase
     }
 
     /**
-     * @return CiDetector::class|\PHPUnit_Framework_MockObject_MockObject
+     * @return CiDetector|MockObject
      */
     private function createCiDetectorForCiEnvironment(CiInterface $ci)
     {
@@ -118,7 +119,7 @@ class DetectCommandTest extends TestCase
     }
 
     /**
-     * @return CiDetector::class|\PHPUnit_Framework_MockObject_MockObject
+     * @return CiDetector|MockObject
      */
     private function createCiDetectorForNonCiEnvironment()
     {

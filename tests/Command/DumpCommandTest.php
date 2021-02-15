@@ -7,7 +7,6 @@ use OndraM\CiDetector\Ci\Travis;
 use OndraM\CiDetector\CiDetector;
 use OndraM\CiDetector\Command\DumpCommand;
 use OndraM\CiDetector\Exception\CiNotDetectedException;
-use OndraM\CiDetector\TrinaryLogic;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Application;
@@ -42,14 +41,17 @@ class DumpCommandTest extends TestCase
         $ciMock = $this->createConfiguredMock(
             Travis::class,
             [
-                'getCiName' => 'Jenkins',
-                'getBuildNumber' => '1337',
-                'getBuildUrl' => '',
-                'getGitCommit' => '0f00c556508e02b9376a39ce21f25cd79e9183f4',
-                'getGitBranch' => 'origin/feature/foo',
-                'getRepositoryUrl' => 'ssh://git@gitserver:7999/project/repo.git',
-                'getRepositoryName' => '',
-                'isPullRequest' => TrinaryLogic::createFromBoolean(false),
+                'describe' => [
+                    'ci-name' => 'Jenkins',
+                    'build-number' => '1337',
+                    'build-url' => 'http://jenkins.foo/job/foo_job_name_1337/',
+                    'commit' => '0f00c556508e02b9376a39ce21f25cd79e9183f4',
+                    'branch' => 'origin/feature/foo',
+                    'target-branch' => 'origin/main',
+                    'repository-name' => '',
+                    'repository-url' => 'ssh://git@gitserver:7999/project/repo.git',
+                    'is-pull-request' => 'Yes',
+                ],
             ]
         );
 
@@ -68,13 +70,14 @@ class DumpCommandTest extends TestCase
 | Property name   | Current value                             |
 +-----------------+-------------------------------------------+
 | ci-name         | Jenkins                                   |
-| pull-request    | No                                        |
 | build-number    | 1337                                      |
-| build-url       |                                           |
-| git-commit      | 0f00c556508e02b9376a39ce21f25cd79e9183f4  |
-| git-branch      | origin/feature/foo                        |
+| build-url       | http://jenkins.foo/job/foo_job_name_1337/ |
+| commit          | 0f00c556508e02b9376a39ce21f25cd79e9183f4  |
+| branch          | origin/feature/foo                        |
+| target-branch   | origin/main                               |
 | repository-name |                                           |
 | repository-url  | ssh://git@gitserver:7999/project/repo.git |
+| is-pull-request | Yes                                       |
 +-----------------+-------------------------------------------+
 
 HTXT;

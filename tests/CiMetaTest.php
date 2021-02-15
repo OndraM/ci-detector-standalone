@@ -28,30 +28,9 @@ class CiMetaTest extends TestCase
     public function providePropertyNames(): array
     {
         return [
-            ['pull-request', 'isPullRequest'],
+            ['is-pull-request', 'isPullRequest'],
             ['ci-name', 'getCiName'],
+            ['branch', 'getBranch'],
         ];
-    }
-
-    /**
-     * @test
-     */
-    public function shouldGetPropertyNamesFromTheCiInterface(): void
-    {
-        $meta = new CiMeta();
-
-        $this->assertEqualsCanonicalizing(
-            [
-                'ci-name',
-                'build-number',
-                'build-url',
-                'git-commit',
-                'git-branch',
-                'repository-name',
-                'repository-url',
-                'pull-request',
-            ],
-            $meta->getAvailableProperties()
-        );
     }
 }

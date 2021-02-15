@@ -57,7 +57,7 @@ class DetectCommandTest extends TestCase
         $ciMock = $this->createConfiguredMock(
             Travis::class,
             [
-                'getGitBranch' => 'origin/feature/foo',
+                'describe' => ['branch' => 'origin/feature/foo'],
             ]
         );
 
@@ -68,7 +68,7 @@ class DetectCommandTest extends TestCase
         $tester->execute(
             [
                 'command' => $command->getName(),
-                DetectCommand::ARGUMENT_PROPERTY => 'git-branch',
+                DetectCommand::ARGUMENT_PROPERTY => 'branch',
             ]
         );
 

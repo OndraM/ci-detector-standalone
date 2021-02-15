@@ -5,7 +5,6 @@ namespace OndraM\CiDetector;
 use Laminas\Filter\FilterInterface;
 use Laminas\Filter\Word\CamelCaseToDash;
 use Laminas\Filter\Word\DashToCamelCase;
-use OndraM\CiDetector\Ci\CiInterface;
 
 /**
  * Provide metadata of CiInterface
@@ -27,37 +26,10 @@ class CiMeta
     {
         $methodName = $this->propertyNameFilter->filter($propertyName);
 
-        if (method_exists(CiInterface::class, 'get' . $methodName)) {
-            return 'get' . $methodName;
+        if (mb_strpos($propertyName, 'is') === 0) {
+            return lcfirst($methodName);
         }
 
-        return 'is' . $methodName;
-    }
-
-    /**
-     * @return string[]
-     */
-    public function getAvailableProperties(): array
-    {
-        $properties = [];
-
-        foreach (get_class_methods(CiInterface::class) as $methodName) {
-            if (mb_substr($methodName, 0, 3) !== 'get'
-                && (mb_substr($methodName, 0, 2) !== 'is'
-                    || $methodName === 'isDetected')) {
-                continue;
-            }
-
-            $properties[] = $this->derivePropertyNameFromMethod($methodName);
-        }
-
-        return $properties;
-    }
-
-    private function derivePropertyNameFromMethod(string $methodName): string
-    {
-        $methodName = (mb_substr($methodName, 0, 3) === 'get') ? mb_substr($methodName, 3) : mb_substr($methodName, 2);
-
-        return mb_strtolower($this->methodNameFilter->filter($methodName));
+        return 'get' . $methodName;
     }
 }

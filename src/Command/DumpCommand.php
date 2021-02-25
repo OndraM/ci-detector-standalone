@@ -6,7 +6,6 @@ use Laminas\Filter\FilterInterface;
 use Laminas\Filter\Word\DashToCamelCase;
 use OndraM\CiDetector\CiDetector;
 use OndraM\CiDetector\CiMeta;
-use OndraM\CiDetector\TrinaryLogic;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Exception\RuntimeException;
 use Symfony\Component\Console\Helper\Table;
@@ -48,16 +47,7 @@ class DumpCommand extends Command
         $table = new Table($output);
         $table->setHeaders(['Property name', 'Current value']);
 
-        $availableProperties = $this->ciMeta->getAvailableProperties();
-
-        foreach ($availableProperties as $property) {
-            $methodName = $this->ciMeta->assembleMethodNameFromProperty($property);
-            $value = $ci->$methodName();
-
-            if ($value instanceof TrinaryLogic) {
-                $value = $value->describe();
-            }
-
+        foreach ($ci->describe() as $property => $value) {
             $table->addRow([$property, $value]);
         }
 

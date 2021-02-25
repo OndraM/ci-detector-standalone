@@ -28,7 +28,17 @@ class DetectCommand extends Command
 
     protected function configure(): void
     {
-        $availableProperties = $this->ciMeta->getAvailableProperties();
+        $availablePropertiesExamples = [
+            'ci-name',
+            'build-number',
+            'build-url',
+            'commit',
+            'branch',
+            'target-branch',
+            'repository-name',
+            'repository-url',
+            'is-pull-request',
+        ];
 
         $this->setName('detect')
             ->setDescription('Detect properties of CI run environment')
@@ -36,7 +46,7 @@ class DetectCommand extends Command
                 self::ARGUMENT_PROPERTY,
                 InputArgument::OPTIONAL,
                 'Name of the property to detect. '
-                    . '(<comment>' . implode('</comment>, <comment>', $availableProperties) . '</comment>)'
+                    . '(<comment>' . implode('</comment>, <comment>', $availablePropertiesExamples) . '</comment>)'
             );
     }
 
@@ -60,16 +70,16 @@ class DetectCommand extends Command
 
     private function detectProperty(string $propertyName): string
     {
-        $getterMethod = $this->ciMeta->assembleMethodNameFromProperty($propertyName);
         $ci = $this->ciDetector->detect();
-        $callable = [$ci, $getterMethod];
 
-        if (!is_callable($callable)) {
+        $detectedValues = $ci->describe();
+
+        if (!array_key_exists($propertyName, $detectedValues)) {
             throw new InvalidArgumentException(
                 sprintf('Unknown property "%s".', $propertyName)
             );
         }
 
-        return call_user_func($callable);
+        return $detectedValues[$propertyName];
     }
 }
